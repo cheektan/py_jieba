@@ -16,7 +16,7 @@ def read_file_cut(): #Read file and cut
     os.makedirs(respath)
     num = 1
     while num<=10:
-        name = "%01d" % num
+        name = "%d" % num
         fileName = path + os.sep + str(name) + ".txt"
         resName = respath + os.sep + str(name) + ".txt"
         source = open(fileName,'r',encoding='UTF-8')
