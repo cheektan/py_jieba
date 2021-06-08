@@ -13,7 +13,12 @@
 ### $其他实现功能:  
 - 批量更改文件名扩展名
 - 多文档合并
-- dev and master test
+<<<<<<< HEAD
+- dev master test
+=======
+- dev master test
+
+>>>>>>> dev
 
 
 
