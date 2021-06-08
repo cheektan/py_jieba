@@ -22,7 +22,7 @@ def read_file_cut(): #Read file and cut
         source = open(fileName,'r',encoding='UTF-8')
         if os.path.exists(resName):
             os.remove(resName)
-        result = codecs.open(resName,'w','utf-8')
+        result = codecs.open(resName,'w',encoding='UTF-8')
         line = source.readline()
         line = line.rstrip('\n')
         while line!="":
