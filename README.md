@@ -5,20 +5,21 @@
 
 ## 2. 分词文件保存
 - 创建新文档保存分词结果
+- excludes.txt, 排除one word, 
 
 ## 3. 分词词频统计
 * 对分词结果进行频率排序，并统计词频
+## Working for 
+- analyse使用-关键词、停用词
+- 同义词组合并替换
+- 词频可视化-词图
+- 可导入excel  
 
-[//]:# (这是Markdown注释代码)  
+[](这是Markdown注释代码&超链接) 
+
 ### $其他实现功能:  
 - 批量更改文件名扩展名
 - 多文档合并
-<<<<<<< HEAD
-- dev master test
-=======
-- dev master test
-
->>>>>>> dev
 
 
 
