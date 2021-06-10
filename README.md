@@ -11,6 +11,8 @@
 * 对分词结果进行频率排序，并统计词频
 ## Working for 
 - ~~multi_stopwords_txt~~
+- ~~去除txt中空行~~
+- txt文档编码格式转成UTF-8
 - analyse使用-关键词、停用词
 - 同义词组合并替换
 - 词频可视化-词图
@@ -22,8 +24,9 @@
 - 批量更改文件名扩展名
 - 多文档合并
 
-
-
-
-
-
+-----------
+## Mark:
+- Note:  
+  - `print(str,seg='*',end='\n')` #_默认换行_
+  - `newF.write(str)` #_默认不换行_
+  - `str=flie.readline()` #_单行读取带 '\n'_ 
