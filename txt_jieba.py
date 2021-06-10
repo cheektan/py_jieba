@@ -8,6 +8,7 @@ print(" ".join(sent_list))
 
 fW=open('txt_out.txt', 'w', encoding='UTF-8')
 fW.write(' '.join(sent_list))
+fW.write(' '.join(sent_list))
 
 fR.close()
 fW.close()

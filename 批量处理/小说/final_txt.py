@@ -8,8 +8,8 @@ import jieba.analyse
 jieba.load_userdict("dict.txt")  # 导入自定义词典
 jieba.add_word('热运动') #添加关键词汇
 def read_file_cut():  # Read file and cut
-    path = r"C:\Users\12158\Downloads\py_jieba\批量处理\待处理"  # create path
-    respath = r"C:\users\12158\Downloads\py_jieba\批量处理\已处理"
+    path = r"C:\Users\12158\Downloads\py_jieba\批量处理\小说"  # create path
+    # respath = r"C:\users\12158\Downloads\py_jieba\批量处理\小说"
     file = open('hit_stopwords.txt','r',encoding='UTF-8') #导入停用词
     stoplist = file.read().split()
     file.close()
@@ -18,10 +18,10 @@ def read_file_cut():  # Read file and cut
         # shutil.rmtree(respath, True)
     # os.makedirs(respath)
     num = 1
-    while num <= 10: #遍历文档
+    while num <= 1: #遍历文档
         name = "%d" % num
         fileName = path + os.sep + str(name) + ".txt"
-        resName = respath + os.sep + str(name) + ".txt"
+        resName = path + os.sep + 'res' + str(name) + ".txt"
         source = open(fileName, 'r', encoding='UTF-8')
         # if os.path.exists(resName): #清除resName文件
             # os.remove(resName)
@@ -30,6 +30,8 @@ def read_file_cut():  # Read file and cut
         line = line.rstrip('\n')
         while line != "": #遍历文档单行
             # line = str(line,encoding="UTF-8")
+            if line == '\n':
+                line = ''
             final = ''
             seglist = jieba.lcut(line, use_paddle=True)
             for seg in seglist:
@@ -39,9 +41,10 @@ def read_file_cut():  # Read file and cut
             output = ' '.join(seglist)
             # print(output)
             result.write(output + '\r\n')
+            # output = output.rsplit('\n')
             # result.write(output)
             line = source.readline()
-            line = line.rstrip('\n')
+            # line = line.rstrip('\n')
         else:
             # print('End file:' + str(num))
             source.close()
