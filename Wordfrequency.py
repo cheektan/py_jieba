@@ -1,5 +1,10 @@
 from re import T
 import jieba
+
+import xlwt #写入Excel表的库
+wbk=xlwt.Workbook(encoding='ascii')
+sheet=wbk.add_sheet('wordcount')#Excel单元格名字
+
 jieba.enable_paddle()
 def takeSecond(elem):
     return elem[1]
@@ -34,4 +39,9 @@ def main():
         #print('%3s,%d'%(keyWord,count))
         fW.write('%s %d\n'%(keyWord,count)) #写入词组词频
     fW.close()
+    for i in range(10): #保存成xls表格
+        item=items[i]
+        sheet.write(i,1,label=item[1])
+        sheet.write(i,0,label=item[0])
+    wbk.save('wordcount.xls')
 main()

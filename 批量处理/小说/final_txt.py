@@ -1,4 +1,4 @@
-# encoding=utf-8
+# encoding='UTF-8'
 import codecs
 import os
 import shutil
@@ -22,7 +22,8 @@ def read_file_cut():  # Read file and cut
         name = "%d" % num
         fileName = path + os.sep + str(name) + ".txt"
         resName = path + os.sep + 'res' + str(name) + ".txt"
-        source = open(fileName, 'r', encoding='UTF-8')
+        # source = codecs.open(fileName, 'r', encoding='UTF-8')
+        source = codecs.open(fileName,'r',encoding='utf-8')
         # if os.path.exists(resName): #清除resName文件
             # os.remove(resName)
         result = codecs.open(resName, 'w', encoding='UTF-8')
@@ -40,9 +41,9 @@ def read_file_cut():  # Read file and cut
                 seglist = jieba.lcut(final)
             output = ' '.join(seglist)
             # print(output)
-            result.write(output + '\r\n')
+            # result.write(output + '\r\n')
             # output = output.rsplit('\n')
-            # result.write(output)
+            result.write(output)
             line = source.readline()
             # line = line.rstrip('\n')
         else:
