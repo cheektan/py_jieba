@@ -1,0 +1,45 @@
+
+from jieba import analyse
+# 引入TextRank关键词抽取接口
+textrank = analyse.textrank
+ 
+# 原始文本
+text = "线程是程序执行时的最小单位，它是进程的一个执行流，\
+        是CPU调度和分派的基本单位，一个进程可以由很多个线程组成，\
+        线程间共享进程的所有资源，每个线程有自己的堆栈和局部变量。\
+        线程由CPU独立调度执行，在多CPU环境下就允许多个线程同时运行。\
+        同样多线程也可以实现并发操作，每个请求分配一个线程来处理。"
+ 
+print "\nkeywords by textrank:"
+# 基于TextRank算法进行关键词抽取
+keywords = textrank(text)
+# 输出抽取出的关键词
+for keyword in keywords:
+    print keyword + "/",
+	
+	jieba.analyse.set_stop_words("stop_words.txt")
+         jieba.analyse.set_idf_path("idf.txt.big");
+
+from gensim import corpora, models
+words_ls = []
+review_list=[]
+txt_id = 1
+review_split_txt_path = 'split_result_txt/split_txt_9.txt'
+f = open(review_split_txt_path, 'r', encoding='utf-8') #打开分词结果的txt文件
+for line in f.readlines():
+    #分词结果txt文档每行是一条评论
+    #这是txt一行的样式：酒店/干净/床品/采光/周边/早上/小跑/西湖/晨练/跑步/风景/景区/没/吃/早餐
+    review_words = line.split("/") 
+    # print(review_words)
+    words_ls.append(review_words) #将列表review_words追加到列表words_ls中，当做一个元素
+
+print(words_ls)
+dictionary = corpora.Dictionary(words_ls)
+# 基于词典，使【词】→【稀疏向量】，并将向量放入列表，形成【稀疏向量集】
+corpus = [dictionary.doc2bow(words) for words in words_ls]
+# print(corpus)
+# lda模型，num_topics设置主题的个数
+lda = models.ldamodel.LdaModel(corpus=corpus, id2word=dictionary, num_topics=20)
+# 打印所有主题，每个主题显示10个词
+for topic in lda.print_topics(num_words=10):
+    print(topic)
