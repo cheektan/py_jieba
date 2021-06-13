@@ -29,6 +29,6 @@
 -----------
 ## Mark:
 - Note:  
-  - `print(str,seg='*',end='\n')` #_默认换行_
-  - `newF.write(str)` #_默认不换行_
-  - `str=flie.readline()` #_单行读取带 '\n'_ 
+  - `print(str,seg='*',end='\n')` _默认换行_
+  - `newF.write(str)` _默认不换行_
+  - `str=flie.readline()` _单行读取带 '\n'_ 
