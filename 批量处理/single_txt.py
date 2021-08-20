@@ -1,0 +1,68 @@
+# encoding=utf-8
+import codecs
+import os
+import shutil
+import jieba
+import jieba.analyse
+# jieba.enable_paddle()
+# jieba.load_userdict("批量处理/bd_dict.txt")  # 导入自定义词典
+# jieba.add_word('明星')  # 添加关键词汇
+# jieba.suggest_freq(('是', '因为'), True)  # 调节单个词语词频
+
+
+# def read_file_cut():  # Read file and cut
+jieba.enable_paddle()
+# jieba.load_userdict("批量处理/dict.txt")  # 导入自定义词典
+jieba.load_userdict("批量处理/1bd_dict.txt")  # 导入自定义词典
+# jieba.suggest_freq(('是', '因为'), True)  # 调节单个词语词频
+
+path = r"E:\VSCode\py_jieba\批量处理\待处理"  # create path
+respath = r"E:\VSCode\py_jieba\批量处理\已处理"
+file = open('批量处理/all_stopwords.txt', 'r', encoding='UTF-8')  # 导入停用词
+stoplist = file.read().split()
+file.close()
+stopwords = {}.fromkeys(stoplist)  # 生成停用词词典
+
+# if os.path.isdir(respath):  # 清除respath文件夹
+#     shutil.rmtree(respath, True)
+#     os.makedirs(respath)
+
+name = "1991-2003 时间段"
+fileName = path + os.sep + str(name) + ".txt"
+resName = respath + os.sep + str(name) + " xiaohu.txt"
+source = open(fileName, 'r', encoding='UTF-8')
+
+if os.path.exists(resName):  # 清除resName文件
+    os.remove(resName)
+
+result = codecs.open(resName, 'w', encoding='UTF-8')
+line = source.readline()
+line = line.rstrip('\n')
+
+while line != "？？？":  # 遍历文档单行
+    # line = str(line,encoding="UTF-8")
+    final = ''
+    # seglist = jieba.lcut(line, use_paddle=True)
+    # seglist = jieba.lcut(line, cut_all=True)
+    seglist = jieba.lcut(line, cut_all=False)
+    # seglist = jieba.lcut_for_search(line)
+    for seg in seglist:
+        if seg not in stopwords:  # 剔除单行停用词
+            final += seg
+        seglist = jieba.cut(final)
+    output = ' '.join(seglist)
+    # print(output)
+    result.write(output + '\r\n')
+    # result.write(output)
+    line = source.readline()
+    line = line.rstrip('\n')
+else:
+    # print('End file:' + str(num))
+    source.close()
+    result.close()
+
+print('End All')
+
+
+# if __name__ == '__main__':  # Run function
+# read_file_cut()

@@ -20,7 +20,7 @@ def read_file_cut():  # Read file and cut
     # shutil.rmtree(respath, True)
     # os.makedirs(respath)
     num = 1
-    while num <= 10:  # 遍历文档
+    while num <= 1:  # 遍历文档
         name = "%d" % num
         fileName = path + os.sep + str(name) + ".txt"
         resName = respath + os.sep + str(name) + ".txt"
